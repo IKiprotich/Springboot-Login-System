@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.3/css/bootstrap.min.css}">
+    <style>
+        body {
+            background: linear-gradient(135deg, #6e8efb, #a777e3);
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Poppins', sans-serif;
+        }
+        .register-container {
+            max-width: 400px;
+            width: 100%;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+        .register-container:hover {
+            transform: translateY(-5px);
+        }
+        h2 {
+            color: #333;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+        .form-control {
+            border-radius: 25px;
+            padding: 0.75rem 1.25rem;
+            border: 1px solid #ddd;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .form-control:focus {
+            border-color: #6e8efb;
+            box-shadow: 0 0 8px rgba(110, 142, 251, 0.5);
+        }
+        .btn-register {
+            background: #6e8efb;
+            border: none;
+            border-radius: 25px;
+            padding: 0.75rem;
+            font-weight: 500;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+        .btn-register:hover {
+            background: #5a78e0;
+            transform: scale(1.05);
+        }
+        .error-message {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 0.75rem;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        .login-link {
+            color: #6e8efb;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+        .login-link:hover {
+            color: #5a78e0;
+            text-decoration: underline;
+        }
+        @media (max-width: 576px) {
+            .register-container {
+                margin: 1rem;
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="register-container">
+        <h2 class="text-center">Register</h2>
+        <form th:action="@{/register}" method="post">
+            <div th:if="${error}" class="error-message" th:text="${error}">Username already taken!</div>
+            <div class="mb-3">
+                <input type="text" name="username" class="form-control" placeholder="Username" required="required"/>
+            </div>
+            <div class="mb-3">
+                <input type="password" name="password" class="form-control" placeholder="Password" required="required"/>
+            </div>
+            <div class="mb-3">
+                <button type="submit" class="btn btn-register w-100">Register</button>
+            </div>
+            <div class="text-center">
+                <a href="/login" class="login-link">Already have an account? Login</a>
+            </div>
+        </form>
+    </div>
+
+    <script th:src="@{/webjars/bootstrap/5.3.3/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>

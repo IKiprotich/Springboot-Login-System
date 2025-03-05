@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # loginwithspring
 
 Spring Boot app with secure login, registration, password updates, and dashboard. Uses Spring Security, H2 DB with JPA, Bootstrap 5.3.3, and Thymeleaf. Perfect for learning authentication and persistence. Run with `mvn spring-boot:run`. Access at `localhost:8080/login`.
@@ -108,3 +109,6 @@ MIT License - feel free to use, modify, and distribute.
 
 For issues or ideas, open a GitHub issue or reach out to @ctrliann.
 
+=======
+This is a sample login page using springboot 3.1.0 and Thymeleaf view engine. Session handling and cookies are implemented using spring security. Feel free to pull request and update the code for readability.
+>>>>>>> 8f65402 (Spring boot login Web App)
