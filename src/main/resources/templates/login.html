@@ -3,74 +3,154 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Read The Future - Login</title>
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.3/css/bootstrap.min.css}">
     <style>
+        :root {
+            --primary: #3a86ff;
+            --primary-dark: #2963c9;
+            --accent: #ff6b6b;
+            --dark: #2b2d42;
+            --light: #f8f9fa;
+            --success: #4caf50;
+            --info: #17a2b8;
+        }
+        
         body {
-            background: linear-gradient(135deg, #6e8efb, #a777e3);
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
             height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
+        
         .login-container {
             max-width: 400px;
             width: 100%;
-            padding: 2rem;
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            padding: 2.5rem;
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
             transition: transform 0.3s ease;
         }
+        
         .login-container:hover {
             transform: translateY(-5px);
         }
-        h2 {
-            color: #333;
-            font-weight: 600;
+        
+        .logo {
+            text-align: center;
+            font-weight: 700;
+            font-size: 1.8rem;
+            color: var(--primary);
             margin-bottom: 1.5rem;
         }
+        
+        .logo span {
+            color: var(--accent);
+        }
+        
+        h2 {
+            color: var(--dark);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        
         .form-control {
-            border-radius: 25px;
+            border-radius: 30px;
             padding: 0.75rem 1.25rem;
             border: 1px solid #ddd;
             transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            font-size: 1rem;
         }
+        
         .form-control:focus {
-            border-color: #6e8efb;
-            box-shadow: 0 0 8px rgba(110, 142, 251, 0.5);
+            border-color: var(--primary);
+            box-shadow: 0 0 8px rgba(58, 134, 255, 0.3);
         }
+        
         .btn-login {
-            background: #6e8efb;
+            background: var(--primary);
             border: none;
-            border-radius: 25px;
+            border-radius: 30px;
             padding: 0.75rem;
             font-weight: 500;
-            transition: background 0.3s ease, transform 0.2s ease;
+            transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+            color: white;
         }
+        
         .btn-login:hover {
-            background: #5a78e0;
-            transform: scale(1.05);
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(58, 134, 255, 0.3);
         }
-        .error-message {
-            background: #f8d7da;
-            color: #721c24;
-            padding: 0.75rem;
+        
+        .alert {
             border-radius: 10px;
-            margin-bottom: 1rem;
+            padding: 0.75rem;
+            margin-bottom: 1.5rem;
             text-align: center;
+            font-size: 0.95rem;
         }
+        
+        .alert-danger {
+            background: #ffebee;
+            color: #c62828;
+            border: 1px solid #ffcdd2;
+        }
+        
+        .alert-success {
+            background: #e8f5e9;
+            color: #2e7d32;
+            border: 1px solid #c8e6c9;
+        }
+        
+        .alert-info {
+            background: #e1f5fe;
+            color: #0277bd;
+            border: 1px solid #b3e5fc;
+        }
+        
         .link {
-            color: #6e8efb;
+            color: var(--primary);
             text-decoration: none;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             transition: color 0.3s ease;
         }
+        
         .link:hover {
-            color: #5a78e0;
+            color: var(--primary-dark);
             text-decoration: underline;
         }
+        
+        .form-group {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-icon {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #aaa;
+        }
+        
+        .divider {
+            display: inline-block;
+            margin: 0 8px;
+            color: #ccc;
+        }
+        
+        .footer-text {
+            text-align: center;
+            margin-top: 1.5rem;
+            font-size: 0.85rem;
+            color: #777;
+        }
+        
         @media (max-width: 576px) {
             .login-container {
                 margin: 1rem;
@@ -81,35 +161,50 @@
 </head>
 <body>
     <div class="login-container">
-        <h2 class="text-center">Sign In</h2>
+        <div class="logo">Read<span>The</span> Future</div>
+        <h2>Welcome Back</h2>
+        
         <form th:action="@{/login}" method="post">
-            <div th:if="${param.error}" class="error-message">
+            <!-- Alert Messages -->
+            <div th:if="${param.error}" class="alert alert-danger">
                 Username or Password Incorrect
             </div>
-            <div th:if="${param.passwordChanged}" class="alert alert-success text-center" role="alert">
+            <div th:if="${param.passwordChanged}" class="alert alert-success" role="alert">
                 Password changed successfully! Please log in.
             </div>
-            <div th:if="${param.logout}" class="alert alert-info text-center" role="alert">
+            <div th:if="${param.logout}" class="alert alert-info" role="alert">
                 You have been logged out successfully.
             </div>
-            <div th:if="${param.registered}" class="alert alert-success text-center" role="alert">
+            <div th:if="${param.registered}" class="alert alert-success" role="alert">
                 Registration successful! Please log in.
             </div>
-            <div class="mb-3">
-                <input type="text" name="username" class="form-control" placeholder="Username" required="required"/> <!-- Removed readonly and default "Ian" -->
+            
+            <!-- Username Field -->
+            <div class="form-group">
+                <input type="text" name="username" class="form-control" placeholder="Username" required="required"/>
             </div>
-            <div class="mb-3">
+            
+            <!-- Password Field -->
+            <div class="form-group">
                 <input type="password" name="password" class="form-control" placeholder="Password" required="required"/>
             </div>
-            <div class="mb-3">
-                <button type="submit" class="btn btn-login w-100">Login</button>
+            
+            <!-- Login Button -->
+            <div class="form-group">
+                <button type="submit" class="btn btn-login w-100">Sign In</button>
             </div>
+            
+            <!-- Links -->
             <div class="text-center">
                 <a href="/change-password" class="link">Change Password</a>
-                <span> | </span>
+                <span class="divider">|</span>
                 <a href="/register" class="link">Register</a>
             </div>
         </form>
+        
+        <div class="footer-text">
+            © 2025 Read The Future Copy
+        </div>
     </div>
 
     <script th:src="@{/webjars/bootstrap/5.3.3/js/bootstrap.bundle.min.js}"></script>

@@ -3,74 +3,121 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
+    <title>Read The Future - Sign Up</title>
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.3/css/bootstrap.min.css}">
     <style>
+        :root {
+            --primary: #3a86ff;
+            --primary-dark: #2963c9;
+            --accent: #ff6b6b;
+            --dark: #2b2d42;
+            --light: #f8f9fa;
+        }
+        
         body {
-            background: linear-gradient(135deg, #6e8efb, #a777e3);
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
             height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
+        
         .register-container {
             max-width: 400px;
             width: 100%;
-            padding: 2rem;
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            padding: 2.5rem;
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
             transition: transform 0.3s ease;
         }
+        
         .register-container:hover {
             transform: translateY(-5px);
         }
-        h2 {
-            color: #333;
-            font-weight: 600;
+        
+        .logo {
+            text-align: center;
+            font-weight: 700;
+            font-size: 1.8rem;
+            color: var(--primary);
             margin-bottom: 1.5rem;
         }
+        
+        .logo span {
+            color: var(--accent);
+        }
+        
+        h2 {
+            color: var(--dark);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        
         .form-control {
-            border-radius: 25px;
+            border-radius: 30px;
             padding: 0.75rem 1.25rem;
             border: 1px solid #ddd;
             transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            font-size: 1rem;
         }
+        
         .form-control:focus {
-            border-color: #6e8efb;
-            box-shadow: 0 0 8px rgba(110, 142, 251, 0.5);
+            border-color: var(--primary);
+            box-shadow: 0 0 8px rgba(58, 134, 255, 0.3);
         }
+        
         .btn-register {
-            background: #6e8efb;
+            background: var(--primary);
             border: none;
-            border-radius: 25px;
+            border-radius: 30px;
             padding: 0.75rem;
             font-weight: 500;
-            transition: background 0.3s ease, transform 0.2s ease;
+            transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+            color: white;
         }
+        
         .btn-register:hover {
-            background: #5a78e0;
-            transform: scale(1.05);
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(58, 134, 255, 0.3);
         }
-        .error-message {
-            background: #f8d7da;
-            color: #721c24;
-            padding: 0.75rem;
+        
+        .alert {
             border-radius: 10px;
-            margin-bottom: 1rem;
+            padding: 0.75rem;
+            margin-bottom: 1.5rem;
             text-align: center;
+            font-size: 0.95rem;
         }
-        .login-link {
-            color: #6e8efb;
+        
+        .alert-danger {
+            background: #ffebee;
+            color: #c62828;
+            border: 1px solid #ffcdd2;
+        }
+        
+        .link {
+            color: var(--primary);
             text-decoration: none;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             transition: color 0.3s ease;
         }
-        .login-link:hover {
-            color: #5a78e0;
+        
+        .link:hover {
+            color: var(--primary-dark);
             text-decoration: underline;
         }
+        
+        .footer-text {
+            text-align: center;
+            margin-top: 1.5rem;
+            font-size: 0.85rem;
+            color: #777;
+        }
+        
         @media (max-width: 576px) {
             .register-container {
                 margin: 1rem;
@@ -81,22 +128,32 @@
 </head>
 <body>
     <div class="register-container">
-        <h2 class="text-center">Register</h2>
+        <div class="logo">Read<span>The</span> Future</div>
+        <h2>Create Your Account</h2>
+        
         <form th:action="@{/register}" method="post">
-            <div th:if="${error}" class="error-message" th:text="${error}">Username already taken!</div>
-            <div class="mb-3">
+            <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
+            
+            <div class="form-group">
                 <input type="text" name="username" class="form-control" placeholder="Username" required="required"/>
             </div>
-            <div class="mb-3">
+            
+            <div class="form-group">
                 <input type="password" name="password" class="form-control" placeholder="Password" required="required"/>
             </div>
-            <div class="mb-3">
-                <button type="submit" class="btn btn-register w-100">Register</button>
+            
+            <div class="form-group">
+                <button type="submit" class="btn btn-register w-100">Sign Up</button>
             </div>
+            
             <div class="text-center">
-                <a href="/login" class="login-link">Already have an account? Login</a>
+                <a href="/login" class="link">Already have an account? Sign In</a>
             </div>
         </form>
+        
+        <div class="footer-text">
+            © 2025 Read The Future Copy
+        </div>
     </div>
 
     <script th:src="@{/webjars/bootstrap/5.3.3/js/bootstrap.bundle.min.js}"></script>
