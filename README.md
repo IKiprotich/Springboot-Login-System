@@ -1,11 +1,11 @@
 <<<<<<< HEAD
-# loginwithspring
+# SpringBoot Login System
 
 Spring Boot app with secure login, registration, password updates, and dashboard. Uses Spring Security, H2 DB with JPA, Bootstrap 5.3.3, and Thymeleaf. Perfect for learning authentication and persistence. Run with `mvn spring-boot:run`. Access at `localhost:8080/login`.
 
 ## Overview
 
-`loginwithspring` is a web application built with Spring Boot 3.4.3, showcasing a secure user authentication system. It allows users to:
+`Springboot login system` is a web application built with Spring Boot 3.4.3, showcasing a secure user authentication system. It allows users to:
 - **Register** with a unique username and password.
 - **Log in** securely, with a default admin user ("Ian", password: "1234").
 - **Update passwords**, persisting changes in an H2 database.
@@ -33,8 +33,8 @@ The app leverages Spring Security for authentication, Spring Data JPA with H2 fo
 
 1. **Clone the Repository**:
    ```bash
-   git clone https://github.com/yourusername/loginwithspring.git
-   cd loginwithspring
+   git clone [https://github.com/yourusername/loginwithspring.git](https://github.com/IKiprotich/Springboot-Login-System.git)
+   cd Springboot login system
    ```
 
 2. **Build the Project**:
